@@ -8,6 +8,22 @@ module.exports = {
     },
     module: {
         rules: [
+            // css
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            },
+            // babel config images
+            {
+                test: /\.(png|jp(e)g|svg|gif)$/,
+                use: ['file-loader'],
+            },
+            // babel config for svg as react component
+            {
+                test: /\.svg$/,
+                use: ['@svgr/webpack']
+            },
+            // js
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
