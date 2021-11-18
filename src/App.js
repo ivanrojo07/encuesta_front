@@ -6,11 +6,11 @@ import Register from './pages/Register';
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
         <Navbar />
         <Routes>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/register" component={Register}/>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/register" element={<Register />} />
         </Routes>
     </div>
   );
