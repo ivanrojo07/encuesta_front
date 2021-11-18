@@ -8,6 +8,7 @@ module.exports = {
     devServer: {
         static: './dist',
         hot: true,
+        historyApiFallback: true
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
