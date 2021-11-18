@@ -14,8 +14,8 @@ const App = () => {
         <Navbar />
         <Routes>
             <Route exact path="/" element={!isAuth ? <Navigate to="/register" /> : <Home />} />
-            <Route exact path="/register" element={<Register />} />
-            
+            <Route exact path="/register" element={isAuth ? <Navigate to="/" /> : <Register />} />
+
         </Routes>
     </div>
   );
