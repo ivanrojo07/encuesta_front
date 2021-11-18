@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import App from './App'
 import './styles.css';
 import { BrowserRouter } from "react-router-dom";
-
-
+import Context from './Context';
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
+    <Context.Provider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Context.Provider>,
     document.getElementById('app')
     );
