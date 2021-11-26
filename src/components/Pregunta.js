@@ -37,13 +37,14 @@ const Pregunta = ({ pregunta = {} }) => {
         body: JSON.stringify(params),
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
-          Authentication: `Bearer ${window.sessionStorage.getItem("token")}`,
+          "Accept": "application/json",
+          "Authentication": `Bearer ${window.sessionStorage.getItem("token")}`,
         },
       })
         .then((res) => res.json())
         .then((response) => {
           console.log("response", response);
+          setDisable(true);
         })
         .catch((error) => {
           console.log("error", error);
@@ -53,48 +54,49 @@ const Pregunta = ({ pregunta = {} }) => {
   };
 
   return (
-    <div
-      className={
-        disable ? "p-4 w-full lg:w-1/2 hidden" : "p-4 w-full lg:w-1/2"
-      }
-    >
-      <div className=" border-2 rounded-lg border-gray-200 border-opacity-50 p-8">
-        <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
-          { `${hours < 10 ? '0'+hours : hours }:${minutes < 10 ? '0'+minutes : minutes}:${seconds < 10 ? '0'+seconds : seconds}` }
-        </div>
-        <div className="flex-grow">
-          <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-            {pregunta.pregunta}
-          </h2>
-          <p className="leading-relaxed text-base">{pregunta.subtitle}</p>
-          <div className="flex sm:flex-row flex-col">
-            {pregunta.opciones.length > 0 &&
-              pregunta.opciones.map((opcion) => {
-                return (
-                  <a
-                    key={opcion.id}
-                    onClick={() => handleResponse(opcion.id)}
-                    className="mt-3 text-indigo-500 inline-flex items-center"
-                  >
-                    {opcion.opcion}
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      className="w-4 h-4 ml-2"
-                      viewBox="0 0 24 24"
+    
+      <div
+        className={
+          disable ? "p-4 w-full hidden" : "p-4 w-full"
+        }
+      >
+        <div className=" border-2 rounded-lg border-gray-200 border-opacity-50 p-8">
+          <div className="w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
+            { `${hours < 10 ? '0'+hours : hours }:${minutes < 10 ? '0'+minutes : minutes}:${seconds < 10 ? '0'+seconds : seconds}` }
+          </div>
+          <div className="mt-3 flex-grow">
+            <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
+              {pregunta.pregunta}
+            </h2>
+            <p className="leading-relaxed text-base">{pregunta.subtitle}</p>
+            <div className="flex sm:flex-row flex-col m-5">
+              {pregunta.opciones.length > 0 &&
+                pregunta.opciones.map((opcion) => {
+                  return (
+                    <a
+                      key={opcion.id}
+                      onClick={() => handleResponse(opcion.id)}
+                      className="m-auto text-indigo-500 inline-flex items-center"
                     >
-                      <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                  </a>
-                );
-              })}
+                      <svg
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        className="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                        >
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                      </svg>
+                      {opcion.opcion}
+                    </a>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
